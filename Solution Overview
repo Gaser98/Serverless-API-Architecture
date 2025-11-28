@@ -1,1 +1,7 @@
+This setup is a fully serverless web application running on AWS. The frontend lives on S3 as a static website, so the browser loads all UI assets directly from S3 with zero servers to manage. When the client needs dynamic data, it hits API Gateway, which handles routing, throttling, and security before invoking the appropriate Lambda functions.
 
+Lambda hosts all the backend logic. It processes the request, applies the business rules, and interacts with DynamoDB to read or write data. DynamoDB is the main storage layer here—fast, scalable, and pay-as-you-go, which fits spiky traffic patterns well.
+
+IAM controls who can do what across the entire stack, keeping access tightly scoped. CloudWatch collects logs and metrics from every component—API Gateway errors, Lambda execution logs, DynamoDB performance, and S3 access logs—so you have full visibility without extra tooling.
+
+The whole architecture is lightweight, scalable by default, and cost-efficient since you only pay when users actually interact with the app.
